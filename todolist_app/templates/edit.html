@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-<title> Edit Task - Taskmate </title>
+<title> Editar Tarefa - Taskmate </title>
 {% endblock %}
 
 {% block content %}
@@ -14,11 +14,11 @@
         <label class="col-lg-2"></label>
         <input type="text" class="form-control col-lg-6" name="task" placeholder="{{task_obj.task}}" value = "{{task_obj.task}}">
         <input type="hidden" name="done" value = "{{task_obj.done}}">
-        <button type="submit" class="btn btn-primary col-lg-2">Update Task</button>
+        <button type="submit" class="btn btn-primary col-lg-2">Atualizar Tarefa</button>
     </form>
     {% else %}
 
-        <p>Access Restricted,  You're not allowed! </P>
+        <p>Acesso restrito! </P>
 
     {% endif %}
 </div>

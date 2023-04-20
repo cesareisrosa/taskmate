@@ -15,7 +15,7 @@ def todolist(request):
             instance = form.save(commit=False)
             instance.manage = request.user
             instance.save()
-        messages.success(request, ("New Task Added!"))
+        messages.success(request, ("Nova tarefa adicionada!"))
         return redirect('todolist')
     else:      
         all_tasks = TaskList.objects.filter(manage=request.user)
@@ -30,7 +30,7 @@ def delete_task(request, task_id):
     if task.manage == request.user:
         task.delete()
     else:
-        messages.error(request, ("Access Restricted,  You're not allowed!"))
+        messages.error(request, ("Acesso restrito!"))
     return redirect('todolist')
 
 @login_required
@@ -39,13 +39,13 @@ def check_task(request, task_id):
     if task.manage == request.user:
         if task.done == False:
                 task.done = True
-                messages.success(request, (task.task + " completed!"))
+                messages.success(request, (task.task + " concluída!"))
         else:
                 task.done = False
-                messages.success(request, (task.task + " pending!"))
+                messages.success(request, (task.task + " pendente!"))
         task.save()             
     else:
-        messages.error(request, ("Access Restricted,  You're not allowed!"))
+        messages.error(request, ("Acesso resrtito!"))
     
     return redirect('todolist')              
     
@@ -57,7 +57,7 @@ def edit_task(request, task_id):
         form = TaskForm(request.POST or None, instance = task)
         if form.is_valid():
             form.save()
-        messages.success(request, ("Task Edited!"))
+        messages.success(request, ("Tarefa atualizada com sucesso!"))
         return redirect('todolist')
     else:      
         task_obj = TaskList.objects.get(pk=task_id)
@@ -66,20 +66,20 @@ def edit_task(request, task_id):
 def index(request):
     context = {
         
-        'index_text': "Welcome to Task Mate",
+        'index_text': "Bem-vindo ao Taskmate",
     }
     return render(request, 'index.html', context)
 
 def contact(request):
     context = {
         
-        'contact_text': "Contact Us",
+        'contact_text': "Faça seu registro.",
     }
     return render(request, 'contact.html', context)
 
 def about(request):
     context = {
         
-        'about_text': "About Taskmate",
+        'about_text': "Taskmate é o seu controle de afazeres diários. Facilmente você pode inserir uma nova tarefa, excluí-la, dá-la como concluída ou colocá-la novamente como pendente.",
     }
     return render(request, 'about.html', context)

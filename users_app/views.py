@@ -9,7 +9,7 @@ def register(request):
         register_form= CustomRegisterForm(request.POST)
         if register_form.is_valid():
             register_form.save()
-            messages.success(request, ("New User Account Created, Login To Get Started!"))
+            messages.success(request, ("Nova conta criada, entre para iniciar!"))
             return redirect('register')
 
     

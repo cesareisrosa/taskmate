@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <title> Todo List Manager - Welcome</title>
+    <title> Gerenciador de tarefas - bem-vindo! </title>
 {%  endblock title %}
 
 {% block content %}
@@ -22,17 +22,17 @@
 <form method="POST" class="row">
     {% csrf_token %}
     <label class="col-lg-4"></label>
-    <input type="text" class="form-control col-lg-6" name="task" placeholder="New Task?">
-    <button type="submit" class="btn btn-primary col-lg-2">Add Task</button>
+    <input type="text" class="form-control col-lg-6" name="task" placeholder="Digite sua nova tarefa">
+    <button type="submit" class="btn btn-primary col-lg-2">Adicionar Tarefa</button>
 </form>
 </br>
    <table class="table table-hover text-center">
         <thead class="thead-dark">
       <tr class="row">
-        <th class ="col-7">Task</th>
-        <th class ="col-3">Done</th>
-        <th class ="col-1">Edit</th>
-        <th class ="col-1">Delete</th>
+        <th class ="col-7">Tarefa</th>
+        <th class ="col-3">Status</th>
+        <th class ="col-1">Modificar</th>
+        <th class ="col-1">Excluir</th>
       </tr>
     </thead>
     <tbody class="table-group-divider"> 
@@ -41,16 +41,16 @@
                     {% if obj.done %}
                         <tr class="table-success row">
                             <td class ="col-7"> <del> {{ obj.task }} </del></td>
-                            <td class ="col-3"> <strong> Completed </strong> - mark as <a href="{% url 'check_task' obj.id  %}"> <button type="button" class="btn btn-light">Pending</button> </a> </td>
-                            <td class ="col-1"> <a href="{% url 'edit_task' obj.id  %}"> <button type="button" class="btn btn-outline-warning"> Edit </button></a> </td>
-                            <td class ="col-1"> <a href="{% url 'delete_task' obj.id  %}"> <button type="button" class="btn btn-outline-danger">Delete </button> </a></td>
+                            <td class ="col-3"> <strong> Concluída </strong> - altere para <a href="{% url 'check_task' obj.id  %}"> <button type="button" class="btn btn-light">Pendente</button> </a> </td>
+                            <td class ="col-1"> <a href="{% url 'edit_task' obj.id  %}"> <button type="button" class="btn btn-outline-warning"> Editar </button></a> </td>
+                            <td class ="col-1"> <a href="{% url 'delete_task' obj.id  %}"> <button type="button" class="btn btn-outline-danger">Excluir </button> </a></td>
                         </tr>
                     {% else %}
                         <tr class="row">
                             <td class ="col-7"> {{ obj.task }} </td>
-                            <td class ="col-3"> <strong> Pending </strong> - mark as <a href="{% url 'check_task' obj.id  %}"> <button type="button" class="btn btn-light">Completed</button> </a> </td>
-                            <td class ="col-1"> <a href="{% url 'edit_task' obj.id  %}"> <button type="button" class="btn btn-outline-warning">Edit </button></a> </td>
-                            <td class ="col-1"> <a href="{% url 'delete_task' obj.id  %}"> <button type="button" class="btn btn-outline-danger">Delete </button> </a> </td>
+                            <td class ="col-3"> <strong> Pendente </strong> - altere para <a href="{% url 'check_task' obj.id  %}"> <button type="button" class="btn btn-light">Concluída</button> </a> </td>
+                            <td class ="col-1"> <a href="{% url 'edit_task' obj.id  %}"> <button type="button" class="btn btn-outline-warning">Editar </button></a> </td>
+                            <td class ="col-1"> <a href="{% url 'delete_task' obj.id  %}"> <button type="button" class="btn btn-outline-danger">Excluir </button> </a> </td>
                         </tr>
                     {% endif %} 
             {% endfor %}
